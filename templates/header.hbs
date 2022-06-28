@@ -1,0 +1,18 @@
+<div class="header-container">
+<header class="header">
+  <script type="text/javascript" src="https://app.sendsafely.com/js/external/SendSafelyZendesk.min.js"></script>
+  <div class="logo">
+    {{#link 'new_request'}}
+      <img src="{{logo_url}}" alt="{{t 'logo'}}">
+    {{/link}}
+  </div>
+  <div class="nav-wrapper">
+    <span class="icon-menu"></span>
+    <nav class="user-nav" id="user-nav">
+      {{link 'community'}}
+      {{link 'new_request' class='submit-a-request'}}
+    </nav>
+    {{user_info}}
+  </div>
+</header>
+</div>
