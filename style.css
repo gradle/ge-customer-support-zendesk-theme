@@ -673,6 +673,7 @@ ul {
     display: flex;
     height: 71px;
     justify-content: space-between;
+    background-color: $link_color;
 }
 
 @media (min-width: 1160px) {
