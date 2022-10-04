@@ -1,18 +1,16 @@
-document.addEventListener('readystatechange', (event) => {
-    // SendSafely
-    if (typeof SendSafelyZendesk === 'function') {
-        var dropzoneId = 'zTiLIluK-aAGv4DfjC4vMB_LFPN-JCj7XBWn71dkOwk';
-        //Create a new instance.
-        var sendsafely = new SendSafelyZendesk(dropzoneId);
-        sendsafely.api.url = 'https://share.gradle.com';
-        //Post the SendSafely secure link as a formatted hyperlink if Rich Text Editor is enabled.
-        sendsafely.formattedLink = true
-        sendsafely.initialize();
-    } else {
-        //Stop the native Zendesk attachment box from showing if SendSafely is unable to load
-        $('#upload-dropzone').parent().hide();
-    }
-});
+// SendSafely
+if (typeof SendSafelyZendesk === 'function') {
+    var dropzoneId = 'zTiLIluK-aAGv4DfjC4vMB_LFPN-JCj7XBWn71dkOwk';
+    //Create a new instance.
+    var sendsafely = new SendSafelyZendesk(dropzoneId);
+    sendsafely.api.url = 'https://share.gradle.com';
+    //Post the SendSafely secure link as a formatted hyperlink if Rich Text Editor is enabled.
+    sendsafely.formattedLink = true
+    sendsafely.initialize();
+} else {
+    //Stop the native Zendesk attachment box from showing if SendSafely is unable to load
+    $('#upload-dropzone').parent().hide();
+}
 
 // Vanilla JS debounce function, by Josh W. Comeau:
 // https://www.joshwcomeau.com/snippets/javascript/debounce/
