@@ -1,7 +1,7 @@
 {
     "name": "Custom Theme",
     "author": "Zendesk",
-    "version": "2.19.3",
+    "version": "2.19.4",
     "api_version": 2,
     "default_locale": "en-us",
     "settings": [
@@ -20,7 +20,7 @@
                     "type": "color",
                     "description": "brand_text_color_description",
                     "label": "brand_text_color_label",
-                    "value": "#ffffff"
+                    "value": "#02303a"
                 },
                 {
                     "identifier": "text_color",
