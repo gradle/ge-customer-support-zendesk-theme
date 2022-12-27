@@ -1937,7 +1937,7 @@ ul {
   border-radius: 3px;
   padding: 10px 15px;
   overflow: auto;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .article-body blockquote {
@@ -2432,7 +2432,7 @@ ul {
   border-radius: 3px;
   padding: 10px 15px;
   overflow: auto;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .comment-body blockquote {
@@ -3033,7 +3033,7 @@ ul {
   border-radius: 3px;
   padding: 10px 15px;
   overflow: auto;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .post-body blockquote {
