@@ -14,7 +14,7 @@
   <div class="search-results">
     <aside class="search-results-sidebar">
       {{#if source_filters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
+        <section class="filters-in-section collapsible-sidebar">
           <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false" aria-label="{{t 'search_result_source_menu'}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
               <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
@@ -42,7 +42,7 @@
         </section>
       {{/if}}
       {{#if type_filters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
+        <section class="filters-in-section collapsible-sidebar">
           <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false" aria-label="{{t 'search_result_type_menu'}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
               <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
@@ -69,7 +69,7 @@
         </section>
       {{/if}}
       {{#if subfilters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
+        <section class="filters-in-section collapsible-sidebar">
           <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false" aria-label="{{t 'search_result_subfilter_menu'}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
               <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
@@ -107,7 +107,7 @@
         </section>
       {{/if}}
       {{#if content_tag_filters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
+        <section class="filters-in-section collapsible-sidebar">
           <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
               <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
@@ -121,14 +121,16 @@
             {{#each content_tag_filters}}
             	{{#if selected}}
                 <li class="sidenav-tag">
-                  <a href="{{url}}" aria-current="page">
+                  <div class="content-tag">
                     <span class="label">{{name}}</span>
-                    <span>
-                      <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false"  aria-hidden="true" >
-                          <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
-                      </svg>
-                    </span>
-                  </a>
+                    <a href="{{url}}" aria-current="page">
+                      <span>
+                        <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false"  aria-hidden="true" >
+                            <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
                 </li>
               {{/if}}
             {{/each}}
@@ -210,19 +212,19 @@
                 {{/if}}
               </div>
               <article>
-                <ul class="meta-group">
-                  <li>
+                <div class="meta-group">
+                  <span>
                     <ol class="breadcrumbs search-result-breadcrumbs">
                       {{#each path_steps}}
                         <li title="{{name}}"><a href="{{url}}" target="{{target}}">{{name}}</a></li>
                       {{/each}}
                     </ol>
-                  </li>
+                  </span>
                   {{#unless is_external}}
-                    <li class="meta-data">{{author.name}}</li>
+                    <span class="meta-data">{{author.name}}</span>
                   {{/unless}}
-                  <li class="meta-data">{{date created_at}}</li>
-                </ul>
+                  <span class="meta-data">{{date created_at}}</span>
+                </div>
                 <div class="search-results-description">{{text}}</div>
               </article>
             </li>

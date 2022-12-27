@@ -14,7 +14,7 @@
   <div class="post-container">
     <div class="post">
       <article id="main-content">
-        <header class="post-header">
+        <div class="post-header">
           <div class="post-title">
             <h1 title="{{post.title}}">
               {{post.title}}
@@ -43,7 +43,7 @@
               {{subscribe}}
             </div>
           {{/if}}
-        </header>
+        </div>
 
         <section class="post-info-container">
           <div class="post-info">
@@ -71,14 +71,14 @@
                   {{/each}}
                 </span>
 
-                <ul class="meta-group meta-group-opposite">
+                <div class="meta-group meta-group-opposite">
                   {{#if post.editor}}
-                    <li class="meta-data">{{date post.edited_at timeago=true}}</li>
-                    <li class="meta-data">{{t 'edited'}}</li>
+                    <span class="meta-data">{{date post.edited_at timeago=true}}</span>
+                    <span class="meta-data">{{t 'edited'}}</span>
                   {{else}}
-                    <li class="meta-data">{{date post.created_at timeago=true}}</li>
+                    <span class="meta-data">{{date post.created_at timeago=true}}</span>
                   {{/if}}
-                </ul>
+                </div>
                 <div class="community-badge-container-achievements">
                   {{#each (
                     slice
@@ -130,7 +130,7 @@
                 <ul class="content-tag-list">
                   {{#each post.content_tags}}
                     <li class="content-tag-item" data-content-tag-id="{{id}}">
-                      {{#link "search_result" content_tag_id=id target="_blank"}}
+                      {{#link "search_result" content_tag_id=id}}
                         {{name}}
                       {{/link}}
                     </li>
@@ -226,7 +226,7 @@
                     <img src="{{author.avatar_url}}" alt="" class="user-avatar"/>
                   </div>
                   <div class="comment-meta">
-                    <span title="{{author.name}}">
+                    <span title="{{author.name}}" id="{{anchor}}-author">
                       {{#link 'user_profile' id=author.id}}
                         {{author.name}}
                       {{/link}}
@@ -240,14 +240,14 @@
                       {{/each}}
                     </span>
 
-                    <ul class="meta-group meta-group-opposite">
+                    <div class="meta-group meta-group-opposite">
                       {{#if editor}}
-                        <li class="meta-data">{{date edited_at timeago=true}}</li>
-                        <li class="meta-data">{{t 'edited'}}</li>
+                        <span class="meta-data">{{date edited_at timeago=true}}</span>
+                        <span class="meta-data">{{t 'edited'}}</span>
                       {{else}}
-                        <li class="meta-data">{{date created_at timeago=true}}</li>
+                        <span class="meta-data">{{date created_at timeago=true}}</span>
                       {{/if}}
-                    </ul>
+                    </div>
 
                     <div aria-label="{{t 'badges'}}" class="community-badge-container-achievements">
                       {{#each (
@@ -289,19 +289,19 @@
                   </div>
                 </div>
 
-                <section class="comment-body">{{body}}</section>
+                <section class="comment-body" id="{{anchor}}-body">{{body}}</section>
               </div>
 
               <div class="comment-actions-container">
                 {{#unless official}}
                   <div class="comment-vote vote" role="group">
-                    {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
+                    {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted' aria-describedby=(concat anchor "-author " anchor "-body")}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
                       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
                     </svg>
                     {{/vote}}
                     {{vote 'sum' class='vote-sum'}}
-                    {{#vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
+                    {{#vote 'down' role='radio' class='vote-down' selected_class='vote-voted' aria-describedby=(concat anchor "-author " anchor "-body")}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
                       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
                     </svg>
