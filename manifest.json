@@ -224,7 +224,7 @@
           "type": "checkbox",
           "description": "show_brand_name_description",
           "label": "show_brand_name_label",
-          "value": true
+          "value": false
         },
         {
           "identifier": "favicon",
