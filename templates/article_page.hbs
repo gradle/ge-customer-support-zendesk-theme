@@ -128,7 +128,7 @@
         </div>
       </section>
 
-      <footer>
+      <!--<footer>
         <div class="article-footer">
           {{#if settings.show_article_sharing}}
             <div class="article-share">{{share}}</div>
@@ -170,17 +170,17 @@
             </svg>
           </a>
         </div>
-      </footer>
+      </footer>-->
 
-      <div class="article-relatives">
+      <!--<div class="article-relatives">
         {{#if settings.show_recently_viewed_articles}}
           {{recent_articles}}
         {{/if}}
         {{#if settings.show_related_articles}}
           {{related_articles}}
         {{/if}}
-      </div>
-      {{#if settings.show_article_comments}}
+      </div>-->
+     <!-- {{#if settings.show_article_comments}}
         <div class="article-comments" id="article-comments">
           <section class="comments">
             <header class="comment-overview">
@@ -285,7 +285,7 @@
                       <section class="comment-body" id="{{anchor}}-body">{{body}}</section>
                     </div>
 
-<!--
+&lt;!&ndash;
                     <div class="comment-actions-container">
                       <div class="comment-vote vote" role="group">
                         {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted' aria-describedby=(concat anchor "-author " anchor "-body")}}
@@ -309,7 +309,7 @@
                         {{/actions}}
                       </div>
                     </div>
--->
+&ndash;&gt;
                   </div>
                 </li>
               {{/each}}
@@ -331,7 +331,7 @@
 
             <p class="comment-callout">{{comment_callout}}</p>
           </section>
-        </div>
+        </div>-->
       {{/if}}
     </article>
   </div>
