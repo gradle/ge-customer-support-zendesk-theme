@@ -1,7 +1,7 @@
 {
   "name": "Custom Theme",
   "author": "Zendesk",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "api_version": 3,
   "default_locale": "en-us",
   "settings": [
