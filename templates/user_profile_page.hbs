@@ -19,39 +19,29 @@
             {{/if}}
           </h1>
 
-          <div hidden="true" aria-label="{{t 'badges'}}"></div>
-          {{#each (filter user.badges on="category_slug" equals="titles")}}
-            <span class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
-              {{name}}
-            </span>
-          {{/each}}
+          <ul aria-label="{{t 'badges'}}" class="community-badge-titles">
+            {{#each (filter user.badges on="category_slug" equals="titles")}}
+              <li class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
+                {{name}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
-        <div aria-label="{{t 'badges'}}" class="community-badge-container-achievements">
-          {{#each (
-            slice
-              (
-                filter
-                  (filter user.badges on="category_slug" equals="achievements")
-                  on="icon_url"
-                  starts_with="https"
-              )
-              0
-              4
-            )
-          }}
-            <div class="community-badge community-badge-achievements">
+        <ul aria-label="{{t 'badges'}}" class="community-badge-achievements">
+          {{#each (slice (filter user.badges on="category_slug" equals="achievements") 0 4)}}
+            <li class="community-badge community-badge-achievement">
               <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" />
-            </div>
+            </li>
           {{/each}}
 
           {{#if (compare (calc user.badges.length "-" 4) ">" 0)}}
-            <div class="community-badge community-badge-achievements">
+            <li class="community-badge community-badge-achievement">
               <a href="{{page_path "user_profile" id=user.id filter_by="badges"}}" class="community-badge-achievements-rest" aria-label="{{t 'more_awards_to' count=(calc user.badges.length "-" 4) name=user.name}}">
                 {{t 'plus_more' count=(calc user.badges.length "-" 4)}}
               </a>
-            </div>
+            </li>
           {{/if}}
-        </div>
+        </ul>
       </div>
       <div class="options">
         {{#if private_profile}}
@@ -205,12 +195,17 @@
                           <span class="status-label status-label-official">{{t 'official_comment'}}</span>
                         {{/if}}
                       </header>
-
-                      <ol class="breadcrumbs profile-contribution-breadcrumbs">
-                        {{#each path_steps}}
-                          <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
-                        {{/each}}
-                      </ol>
+                      <nav
+                        {{#is object_type 'article'}}aria-label='{{t 'article_location_with_title' title=title}}'{{/is}}
+                        {{#is object_type 'post'}}aria-label='{{t 'post_location_with_title' title=title}}'{{/is}}
+                        {{#is object_type 'comment'}}aria-label='{{t 'comment_location_with_author_name' author_name=author.name}}'{{/is}}
+                      >
+                        <ol class="breadcrumbs profile-contribution-breadcrumbs">
+                          {{#each path_steps}}
+                            <li><a href="{{url}}">{{name}}</a></li>
+                          {{/each}}
+                        </ol>
+                      </nav>
 
                       <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
 
@@ -319,7 +314,7 @@
                     </button>
                     <span class="dropdown-menu" role="menu">
                       {{#each sorters}}
-                        <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+                        <a href="{{url}}" aria-checked="{{selected}}" role="menuitemradio">
                           {{name}}
                         </a>
                       {{/each}}
@@ -366,12 +361,17 @@
                         <span class="status-label status-label-official">{{t 'official_comment'}}</span>
                       {{/if}}
                     </header>
-
-                    <ol class="breadcrumbs profile-contribution-breadcrumbs">
-                      {{#each path_steps}}
-                        <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
-                      {{/each}}
-                    </ol>
+                    <nav
+                      {{#is object_type 'article'}}aria-label='{{t 'article_location_with_title' title=title}}'{{/is}}
+                      {{#is object_type 'post'}}aria-label='{{t 'post_location_with_title' title=title}}'{{/is}}
+                      {{#is object_type 'comment'}}aria-label='{{t 'comment_location_with_author_name' author_name=author.name}}'{{/is}}
+                    >
+                      <ol class="breadcrumbs profile-contribution-breadcrumbs">
+                        {{#each path_steps}}
+                          <li><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                      </ol>
+                    </nav>
 
                     <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
 

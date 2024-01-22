@@ -1,6 +1,6 @@
 <div class="container-divider"></div>
 <div class="container">
-  <nav class="sub-nav">
+  <div class="sub-nav">
     {{breadcrumbs}}
     <div class="search-container">
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
@@ -9,7 +9,7 @@
       </svg>
       {{search scoped=settings.scoped_kb_search submit=false}}
     </div>
-  </nav>
+  </div>
 
   <div class="article-container" id="article-container">
     <aside class="article-sidebar" aria-labelledby="section-articles-title">
@@ -30,7 +30,11 @@
             <ul>
               {{#each section.articles}}
                 <li>
-                  <a href="{{url}}" class="sidenav-item {{#is id ../article.id}}current-article{{/is}}">{{title}}</a>
+                  <a href="{{url}}" 
+                     class="sidenav-item {{#is id ../article.id}}current-article{{/is}}"
+                     {{#is id ../article.id}}aria-current="page"{{/is}}>
+                       {{title}}
+                  </a>
                 </li>
               {{/each}}
             </ul>
@@ -148,10 +152,10 @@
         </div>
         {{#with article}}
           <div class="article-votes">
-            <span class="article-votes-question" id="article-votes-label">{{t 'was_this_article_helpful'}}</span>
+            <h2 class="article-votes-question" id="article-votes-label">{{t 'was_this_article_helpful'}}</h2>
             <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
-              {{vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
-              {{vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+              {{vote 'up' class='button article-vote article-vote-up' selected_class="button-primary"}}
+              {{vote 'down' class='button article-vote article-vote-down' selected_class="button-primary"}}
             </div>
             <small class="article-votes-count">
               {{vote 'label' class='article-vote-label'}}
@@ -198,7 +202,7 @@
                   </button>
                   <span class="dropdown-menu" role="menu">
                     {{#each comment_sorters}}
-                      <a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
+                      <a aria-checked="{{selected}}" href="{{url}}" role="menuitemradio">{{name}}</a>
                     {{/each}}
                   </span>
                 </div>
@@ -226,13 +230,13 @@
                             {{/link}}
                           </span>
 
-                          <span aria-label="{{t 'badges'}}" class="community-badge community-badge-titles">
+                          <ul aria-label="{{t 'badges'}}" class="community-badge-titles">
                             {{#each (filter author.badges on="category_slug" equals="titles")}}
-                              <div class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
+                              <li class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
                                 {{name}}
-                              </div>
+                              </li>
                             {{/each}}
-                          </span>
+                          </ul>
 
                           <div class="meta-group meta-group-opposite">
                             {{#if editor}}
@@ -243,32 +247,21 @@
                             {{/if}}
                           </div>
 
-                          <div aria-label="{{t 'badges'}}" class="community-badge-container-achievements">
-                            {{#each (
-                              slice
-                                (
-                                  filter
-                                    (filter author.badges on="category_slug" equals="achievements")
-                                    on="icon_url"
-                                    starts_with="https"
-                                )
-                                0
-                                4
-                              )
-                            }}
-                              <div class="community-badge community-badge-achievements">
+                          <ul aria-label="{{t 'badges'}}" class="community-badge-achievements">
+                            {{#each (slice (filter author.badges on="category_slug" equals="achievements") 0 4)}}
+                              <li class="community-badge community-badge-achievement">
                                 <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" />
-                              </div>
+                              </li>
                             {{/each}}
 
                             {{#if (compare (calc author.badges.length "-" 4) ">" 0)}}
-                              <div class="community-badge community-badge-achievements">
+                              <li class="community-badge community-badge-achievement">
                                 <a href="{{page_path "user_profile" id=author.id filter_by="badges"}}" class="community-badge-achievements-rest"  aria-label="{{t 'more_awards_to' count=(calc author.badges.length "-" 4) name=author.name}}">
                                   {{t 'plus_more' count=(calc author.badges.length "-" 4)}}
                                 </a>
-                              </div>
+                              </li>
                             {{/if}}
-                          </div>
+                          </ul>
                         </div>
                         <div class="comment-labels">
                           {{#with ticket}}

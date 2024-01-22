@@ -254,3 +254,8 @@ $header-height: 71px;
   }
   }
 }
+
+// Disable the skip-navigation link when modals are open
+#zd-modal-container ~ .skip-navigation {
+  display: none;
+}
