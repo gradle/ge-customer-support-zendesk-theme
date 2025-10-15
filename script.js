@@ -1,23 +1,31 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var SendSafelyZendesk = window.SendSafelyZendesk;
+  if (typeof SendSafelyZendesk === 'function')
+  {
+    var dropzoneId = 'zTiLIluK-aAGv4DfjC4vMB_LFPN-JCj7XBWn71dkOwk';
+    // Create a new instance.
+    var sendsafely = new SendSafelyZendesk(dropzoneId);
+    // The following line should reflect the URL for your SendSafely portal.
+    // If you are a PRO TRIAL user, you should use https://www.sendsafely.com.
+    sendsafely.api.url = 'https://share.gradle.com';
+    // Post the SendSafely secure link as a formatted hyperlink if Rich Text Editor is enabled.
+    sendsafely.formattedLink=true;
+    sendsafely.initialize();
+  }
+  else
+  {
+    // Stop the native Zendesk attachment box from showing if SendSafely is unable to load
+    document.querySelector("#upload-dropzone").parentNode.style.display = "none";
+  }
+});
+
+
 (function () {
   'use strict';
 
   // Key map
   const ENTER = 13;
   const ESCAPE = 27;
-
-  // SendSafely
-  if (typeof SendSafelyZendesk === 'function') {
-    var dropzoneId = 'zTiLIluK-aAGv4DfjC4vMB_LFPN-JCj7XBWn71dkOwk';
-    //Create a new instance.
-    var sendsafely = new SendSafelyZendesk(dropzoneId);
-    sendsafely.api.url = 'https://share.gradle.com';
-    //Post the SendSafely secure link as a formatted hyperlink if Rich Text Editor is enabled.
-    sendsafely.formattedLink = true
-    sendsafely.initialize();
-  } else {
-    //Stop the native Zendesk attachment box from showing if SendSafely is unable to load
-    $('#upload-dropzone').parent().hide();
-  }
 
   function toggleNavigation(toggle, menu) {
     const isExpanded = menu.getAttribute("aria-expanded") === "true";

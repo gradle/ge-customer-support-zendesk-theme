@@ -1,5 +1,8 @@
 <a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
-
+<script type="module">
+    import { SendSafelyZendesk } from 'https://gradle.sendsafely.com/js/external/SendSafelyZendesk.v2.min.js'
+    window.SendSafelyZendesk = SendSafelyZendesk;
+</script>
 <header class="header">
   <div class="logo">
     {{#link 'help_center'}}
